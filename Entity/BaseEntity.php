@@ -75,8 +75,10 @@ class BaseEntity
                 if ($annotations = self::parse('/@var\s+([\\\]?[A-Z]\S+)(\[\])/s', $docComment)) {
                     $varClassName = $annotations[1];
                     if (class_exists($varClassName)) {
-                        $items = array();
-                        foreach ($v as $subData) {
+                        $items     = array();
+                        $isNumeric = is_int(key($v));
+                        $list      = $isNumeric ? $v : array($v);
+                        foreach ($list as $subData) {
                             $items[] = new $varClassName($subData);
                         }
                         $v = $items;
