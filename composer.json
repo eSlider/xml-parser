@@ -1,0 +1,40 @@
+{
+  "name": "wheregroup/xml-parser",
+  "description": "XML parser for casting hierarchical object",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Andriy Oblivantsev",
+      "email": "eslider@gmail.com"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^3.7",
+    "opengis/wfs": "2.0.2"
+  },
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Wheregroup\\XML\\": "."
+    }
+  },
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "opengis/wfs",
+        "version": "2.0.2",
+        "type": "library",
+        "dist": {
+          "url": "http://schemas.opengis.net/wfs/wfs-2_0_2.zip",
+          "type": "zip"
+        }
+      }
+    }
+  ],
+  "config": {
+    "secure-http": false
+  }
+}
