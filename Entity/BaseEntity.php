@@ -8,14 +8,22 @@ namespace Wheregroup\XML\Entity;
  */
 class BaseEntity
 {
+    protected $_data;
+    protected $saveOriginalData;
+
     /**
      * BaseEntity constructor.
      *
      * @param array $data
+     * @param bool  $saveOriginalData Save testing friendly original data as array?.
      */
-    public function __construct(array &$data = null)
+    public function __construct(array &$data = null, $saveOriginalData = false)
     {
+        $this->saveOriginalData = $saveOriginalData;
         if ($data) {
+            if ($saveOriginalData) {
+                $this->_data = $data;
+            }
             if (isset($data['@attributes'])) {
                 $this->fill($data['@attributes']);
             }
@@ -25,8 +33,6 @@ class BaseEntity
 
     /**
      * @param array $data
-     * @internal param $methods
-     * @internal param $vars
      */
     protected function fill(array &$data)
     {
@@ -62,7 +68,7 @@ class BaseEntity
                 if (preg_match('/@var ([\\\]?[A-Z]\S+)/s', $docComment, $annotations)) {
                     $varClassName = $annotations[1];
                     if (class_exists($varClassName)) {
-                        $v = new $varClassName($v);
+                        $v = new $varClassName($v, $this->saveOriginalData);
                     }
                 }
                 $this->{$varName} = $v;
@@ -79,7 +85,7 @@ class BaseEntity
                         $isNumeric = is_int(key($v));
                         $list      = $isNumeric ? $v : array($v);
                         foreach ($list as $subData) {
-                            $items[] = new $varClassName($subData);
+                            $items[] = new $varClassName($subData, $this->saveOriginalData);
                         }
                         $v = $items;
                     }
