@@ -1,5 +1,5 @@
 <?php
-namespace Wheregroup\XML\Entity;
+namespace Eslider\XML\Entity;
 
 /**
  * Class BaseEntity

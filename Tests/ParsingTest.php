@@ -1,7 +1,7 @@
 <?php
-namespace Wheregroup\XML\Tests;
+namespace Eslider\XML\Tests;
 
-use Wheregroup\XML\Util\Parser;
+use Eslider\XML\Util\Parser;
 
 /**
  * Test

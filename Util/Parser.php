@@ -1,5 +1,5 @@
 <?php
-namespace Wheregroup\XML\Util;
+namespace Eslider\XML\Util;
 
 /**
  *
