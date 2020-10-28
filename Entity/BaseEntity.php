@@ -59,6 +59,11 @@ class BaseEntity {
                 continue;
             }
 
+            if (in_array($k, $vars)) {
+                $this->setProperty($k, $v);
+                continue;
+            }
+
             $varName = preg_replace_callback("/[_-](\w)/", fn($matches) => strtoupper($matches[1]), $k);
             if (in_array($varName, $vars)) {
                 $this->setProperty($varName, $v);
